@@ -36,7 +36,8 @@ management:
     health:
       probes:
         enabled: true
-
+# encryption to a text will be made via /encrypt and the encrypted string will be replaced in the github repos for that particular value
+# with a "{cipher}" as a prefix to the encryption value. You will get a decrypted value while hitting the endpoint.
 encrypt:
   key: "45D81EC1EF61DF9AD8D3E5BB397F9"
 

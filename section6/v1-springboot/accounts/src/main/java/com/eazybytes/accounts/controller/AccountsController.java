@@ -222,9 +222,15 @@ public class AccountsController {
     )
     @GetMapping("/java-version")
     public ResponseEntity<String> getJavaVersion() {
+        String javaHome = environment.getProperty("JAVA_HOME");
+        if (javaHome == null || javaHome.isEmpty()) {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("JAVA_HOME environment variable is not set");
+        }
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(environment.getProperty("JAVA_HOME"));
+                .body(environment.getProperty(javaHome));
     }
 
     @Operation(
